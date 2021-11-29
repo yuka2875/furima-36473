@@ -11,8 +11,7 @@
 |last_name_kana     |string |null: false              |
 |first_name_kana    |string |null: false              |
 |birth_date         |date   |null: false              |
-|birth_month        |date   |null: false              |
-|birth_year         |date   |null: false              |
+
 
 ### Association
 - has_many :items
@@ -26,17 +25,17 @@
 |-------------------|-----------|-------------------------------|
 |item_name          |string     |null: false                    |
 |explanation        |text       |null: false                    |
-|category           |text       |null: false                    |
-|item_status        |string     |null: false                    |
-|delivery_cost      |string     |null: false                    |
-|shipping_area      |string     |null: false                    |
-|shipping_days      |string     |null: false                    |
-|price              |string     |null: false                    |
+|category_id        |integer    |null: false                    |
+|item_status_id     |integer    |null: false                    |
+|delivery_cost_id   |integer    |null: false                    |
+|prefecture_id_id   |integer    |null: false                    |
+|shipping_days_id   |integer    |null: false                    |
+|price              |integer    |null: false                    |
 |user               |references |null: false ,foreign_key: true |  #出品者
 
 ### Association
-- belongs_to :users
-- has_one :purchaseRecords
+- belongs_to :user
+- has_one :purchaseRecord
 
 
 
@@ -49,9 +48,9 @@
 
 
 ### Association
-- belongs_to :users
-- has_one :items
-- has_one :addresses
+- belongs_to :user
+- has_one :item
+- has_one :addresse
 
 
 
@@ -63,11 +62,12 @@
 |prefecture_id      |string     |null: false                    |
 |city               |string     |null: false                    |
 |block              |string     |null: false                    |
-|building           |string     |null: false                    |
+|building           |string     |                               |
 |phone_number       |string     |null: false                    |
-|user               |references |null: false ,foreign_key: true |
+|user_id            |string     |null: false                    |
+|item_id            |string     |null: false                    |
 
 
 ### Association
-- has_one :purchaseRecords
+- belongs_to :purchaseRecord
 
