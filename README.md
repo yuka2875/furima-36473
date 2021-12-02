@@ -49,8 +49,8 @@
 
 ### Association
 - belongs_to :user
-- has_one :item
-- has_one :addresse
+- belongs_to :item
+- belongs_to :address
 
 
 
@@ -67,5 +67,5 @@
 
 
 ### Association
-- belongs_to :purchase_record
+- has_one :purchase_record
 
