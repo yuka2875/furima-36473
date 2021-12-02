@@ -58,12 +58,15 @@
 
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|postcode           |references |null: false ,foreign_key: true |
-|prefecture_id      |references |null: false ,foreign_key: true |
-|city               |references |null: false ,foreign_key: true |
-|block              |references |null: false ,foreign_key: true |
-|building           |references |foreign_key: true              |
-|phone_number       |references |null: false ,foreign_key: true |
+|postcode           |string     |null: false                    |
+|prefecture_id      |string     |null: false                    |
+|city               |string     |null: false                    |
+|block              |string     |null: false                    |
+|building           |string     |                               |
+|phone_number       |string     |null: false                    |
+|purchase_record    |references |null: false ,foreign_key: true |
+
+
 
 
 ### Association
