@@ -43,14 +43,14 @@
 
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|user_id            |references |null: false ,foreign_key: true |  #購入者
-|item_id            |references |null: false ,foreign_key: true |
+|user               |references |null: false ,foreign_key: true |  #購入者
+|item               |references |null: false ,foreign_key: true |
 
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
 
 
 
@@ -58,14 +58,14 @@
 
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|postcode           |string     |null: false                    |
-|prefecture_id      |string     |null: false                    |
-|city               |string     |null: false                    |
-|block              |string     |null: false                    |
-|building           |string     |                               |
-|phone_number       |string     |null: false                    |
+|postcode           |references |null: false ,foreign_key: true |
+|prefecture_id      |references |null: false ,foreign_key: true |
+|city               |references |null: false ,foreign_key: true |
+|block              |references |null: false ,foreign_key: true |
+|building           |references |foreign_key: true              |
+|phone_number       |references |null: false ,foreign_key: true |
 
 
 ### Association
-- has_one :purchase_record
+- belongs_to :purchase_record
 
