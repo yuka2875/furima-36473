@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchaseRecords
+- has_many :purchase_records
 
 
 
@@ -28,23 +28,23 @@
 |category_id        |integer    |null: false                    |
 |item_status_id     |integer    |null: false                    |
 |delivery_cost_id   |integer    |null: false                    |
-|prefecture_id_id   |integer    |null: false                    |
-|shipping_days_id   |integer    |null: false                    |
+|prefecture_id      |integer    |null: false                    |
+|shipping_day_id    |integer    |null: false                    |
 |price              |integer    |null: false                    |
 |user               |references |null: false ,foreign_key: true |  #出品者
 
 ### Association
 - belongs_to :user
-- has_one :purchaseRecord
+- has_one :purchase_record
 
 
 
-## purchaseRecords テーブル
+## purchase_records テーブル
 
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|user               |references |null: false ,foreign_key: true |  #購入者
-|item               |references |null: false ,foreign_key: true |
+|user_id            |references |null: false ,foreign_key: true |  #購入者
+|item_id            |references |null: false ,foreign_key: true |
 
 
 ### Association
@@ -64,10 +64,8 @@
 |block              |string     |null: false                    |
 |building           |string     |                               |
 |phone_number       |string     |null: false                    |
-|user_id            |string     |null: false                    |
-|item_id            |string     |null: false                    |
 
 
 ### Association
-- belongs_to :purchaseRecord
+- belongs_to :purchase_record
 
