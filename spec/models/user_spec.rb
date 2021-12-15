@@ -7,8 +7,6 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
 
-    #上手くいく時と行かない時を使い分ける。同じ項目を同じ場合に書くとエラー文が重複して表示されない
-
     context '新規登録が上手く行く時' do
       it "nicknameとemail、passwordとpassword_confiramation,last_name,first_name,last_name_kana,first_name_kana,birth_dateが存在すれば登録できる" do
         expect(@user).to be_valid
@@ -76,13 +74,25 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
-  
-    
     it 'passwordとpassword_confirmationが不一致では登録できない' do
       @user.password = '123456'
       @user.password_confirmation = '1234567'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+
+    it 'passwordが半角英字のみでは登録できない' do
+      @user.password = 'abcdefg'
+      @user.password_confirmation = 'abcdefg'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+    end
+
+    it 'passwordが半角数字のみでは登録できない' do
+      @user.password = '1234567'
+      @user.password_confirmation = '1234567'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
     end
 
     it "last_nameが空では登録できない" do
