@@ -14,8 +14,6 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
 
 
-  validates :user, presence: true
-
 
   validates :category_id, :item_status_id, :delivery_cost_id, :prefecture_id, :shipping_day_id,
             numericality: { other_than: 1, message: "can't be blank" }
