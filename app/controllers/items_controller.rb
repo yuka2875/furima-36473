@@ -56,8 +56,11 @@ def set_item
 end
 
 def set_users
-   @item.user_id == current_user
+  if @item.user == current_user
+
+else
     redirect_to  action: :index 
+end
 end
 end
 
