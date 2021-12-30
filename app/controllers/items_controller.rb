@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_users, only: [:destroy]
+  before_action :set_users, only: [:destroy, :edit]
 
 
   def index
@@ -26,7 +26,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to action: :index unless @item.user_id == current_user.id
   end
 
   def update
@@ -58,6 +57,7 @@ end
 
 def set_users
    @item.user_id == current_user
+    redirect_to  action: :index 
 end
 end
 
