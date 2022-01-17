@@ -16,6 +16,4 @@ class PurchaserecordAddress
     Address.create(postcode: postcode, prefecture_id: prefecture_id, city: city, block: block, building: building, phone_number: phone_number, purchase_record_id: purchase_record.id)
   end
 
-
-
 end
