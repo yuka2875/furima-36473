@@ -92,20 +92,6 @@ RSpec.describe PurchaserecordAddress, type: :model do
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include("Item can't be blank")
       end
-
-
-
-
-# ・itemが紐づいていないと登録できない
-# ・userが紐づいていないと登録できない
-# ・tokenが空だと登録できない
-
-
-
-
-
-
-
     end
   end
 end
