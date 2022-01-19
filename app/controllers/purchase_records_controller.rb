@@ -6,16 +6,11 @@ class PurchaseRecordsController < ApplicationController
 
 
   def index
-    # @item = Item.find(params[:item_id])
     @purchase_record_address = PurchaserecordAddress.new
 
-    unless @item.purchase_record.present? && @item.user == current_user
-      redirect_to root_path
-  end
 end
 
   def create
-    # @item = Item.find(params[:item_id])
     @purchase_record_address = PurchaserecordAddress.new(purchase_params)
     if @purchase_record_address.valid?
       pay_item
@@ -48,7 +43,7 @@ end
   end
 
   def set_purchased
-    unless @item.purchase_record.nil? 
+    unless @item.purchase_record.nil? && @item.user == current_user
       redirect_to root_path
    end
   end

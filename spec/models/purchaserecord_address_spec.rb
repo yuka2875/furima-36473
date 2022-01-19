@@ -63,6 +63,12 @@ RSpec.describe PurchaserecordAddress, type: :model do
         expect(@purchase_record_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
 
+      it 'phone_numberが11桁以上では登録できないこと' do
+        @purchase_record_address.phone_number = '090000000000'
+        @purchase_record_address.valid?
+        expect(@purchase_record_address.errors.full_messages).to include('Phone number is invalid. Input only number')
+      end
+
       it 'phone_numberが半角数値のみであること' do
         @purchase_record_address.phone_number = '090-0000-0000'
         @purchase_record_address.valid?
