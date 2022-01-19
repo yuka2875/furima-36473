@@ -1,14 +1,18 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
-  before_action :set_purchased, only: [:index]
+  before_action :set_purchased, only: [:index, :create]
 
 
 
   def index
     # @item = Item.find(params[:item_id])
     @purchase_record_address = PurchaserecordAddress.new
+
+    unless @item.purchase_record.present? && @item.user == current_user
+      redirect_to root_path
   end
+end
 
   def create
     # @item = Item.find(params[:item_id])
@@ -44,9 +48,10 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def set_purchased
-    unless @item.purchase_record.nil?
+    unless @item.purchase_record.nil? 
       redirect_to root_path
    end
   end
-
 end
+
+
