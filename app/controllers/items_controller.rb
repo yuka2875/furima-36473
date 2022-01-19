@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
   before_action :set_users, only: [:destroy, :edit]
 
 
+
+
   def index
     @items = Item.all.order(created_at: :desc)
   end
@@ -29,39 +31,31 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params) 
-      redirect_to item_path
-    else
-      render :edit
-    end
+    
   end
 
   def destroy
     if @item.destroy
-    redirect_to root_path 
+      redirect_to root_path
     else
       render :index
+    end
   end
-end
 
   private
 
-def item_params
-  params.require(:item).permit(:item_name, :image, :explanation, :category_id, :item_status_id, :delivery_cost_id,
-                               :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
-end
+  def item_params
+    params.require(:item).permit(:item_name, :image, :explanation, :category_id, :item_status_id, :delivery_cost_id,
+                                 :prefecture_id, :shipping_day_id, :price, :user_id).merge(user_id: current_user.id)
+  end
 
-def set_item
-  @item = Item.find(params[:id])
-end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-def set_users
-
-  unless @item.user == current_user
-    redirect_to action: :index
+  def set_users
+    unless @item.purchase_record.nil? && @item.user == current_user
+    redirect_to action: :index 
   end
 end
 end
-
-
-

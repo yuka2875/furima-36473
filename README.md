@@ -38,7 +38,6 @@
 - has_one :purchase_record
 
 
-
 ## purchase_records テーブル
 
 |Column             |Type       |Options                        |
