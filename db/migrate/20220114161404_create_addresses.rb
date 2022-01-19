@@ -10,6 +10,7 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
       t.references :purchase_record,      null: false, foreign_key: true
 
 
+
       t.timestamps
     end
   end

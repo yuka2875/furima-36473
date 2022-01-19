@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_users, only: [:destroy, :edit]
 
 
+
   def index
     @items = Item.all.order(created_at: :desc)
   end
@@ -26,6 +27,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    unless @item.purchase_record.nil?
+      redirect_to action: :index
+    end
+
   end
 
   def update
@@ -48,7 +53,7 @@ end
 
 def item_params
   params.require(:item).permit(:item_name, :image, :explanation, :category_id, :item_status_id, :delivery_cost_id,
-                               :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
+                               :prefecture_id, :shipping_day_id, :price, :user_id).merge(user_id: current_user.id)
 end
 
 def set_item
