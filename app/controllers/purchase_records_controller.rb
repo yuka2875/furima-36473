@@ -43,7 +43,7 @@ end
   end
 
   def set_purchased
-    unless @item.purchase_record.nil? && @item.user == current_user
+    unless @item.purchase_record.nil? || @item.user == current_user
       redirect_to root_path
    end
   end

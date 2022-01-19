@@ -74,6 +74,38 @@ RSpec.describe PurchaserecordAddress, type: :model do
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
+
+      it 'tokenが空だと保存できないこと' do
+        @purchase_record_address.token = ''
+        @purchase_record_address.valid?
+        expect(@purchase_record_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'userが紐付いていないと保存できないこと' do
+        @purchase_record_address.user_id = nil
+        @purchase_record_address.valid?
+        expect(@purchase_record_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'itemが紐付いていないと保存できないこと' do
+        @purchase_record_address.item_id = nil
+        @purchase_record_address.valid?
+        expect(@purchase_record_address.errors.full_messages).to include("Item can't be blank")
+      end
+
+
+
+
+# ・itemが紐づいていないと登録できない
+# ・userが紐づいていないと登録できない
+# ・tokenが空だと登録できない
+
+
+
+
+
+
+
     end
   end
 end
