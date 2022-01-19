@@ -3,6 +3,9 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_users, only: [:destroy, :edit]
 
+
+
+
   def index
     @items = Item.all.order(created_at: :desc)
   end
@@ -25,16 +28,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless @item.purchase_record.nil?
-    redirect_to action: :index 
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to item_path
-    else
-      render :edit
-    end
+    
   end
 
   def destroy
@@ -60,4 +57,7 @@ class ItemsController < ApplicationController
     unless @item.user == current_user
     redirect_to action: :index 
   end
+
+  
+end
 end
