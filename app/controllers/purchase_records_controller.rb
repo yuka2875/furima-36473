@@ -11,7 +11,6 @@ class PurchaseRecordsController < ApplicationController
 end
 
   def create
-  
     @purchase_record_address = PurchaserecordAddress.new(purchase_params)
     if @purchase_record_address.valid?
       pay_item
@@ -35,11 +34,11 @@ end
   end
 
   def pay_item
-    binding.pry
+    
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
-      card: purchase_params[:token],
+      card: @purchase_record_address.token,
       currency: 'jpy'
     )
   end
