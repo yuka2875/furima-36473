@@ -11,6 +11,7 @@ class PurchaseRecordsController < ApplicationController
 end
 
   def create
+  
     @purchase_record_address = PurchaserecordAddress.new(purchase_params)
     if @purchase_record_address.valid?
       pay_item
@@ -43,9 +44,8 @@ end
   end
 
   def set_purchased
-    unless @item.purchase_record.nil? || @item.user == current_user
-      redirect_to root_path
-   end
+    redirect_to root_path if @item.purchase_record.present? || @item.user == current_user
+      
   end
 end
 
